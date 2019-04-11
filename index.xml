@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Simon Kapitza on Simon Kapitza</title>
-    <link>/</link>
+    <link>https://kapitzas.github.io/</link>
     <description>Recent content in Simon Kapitza on Simon Kapitza</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
@@ -11,10 +11,10 @@
     
     <item>
       <title>WorldClimTiles</title>
-      <link>/post/worldclimtiles/</link>
+      <link>https://kapitzas.github.io/post/worldclimtiles/</link>
       <pubDate>Tue, 26 Mar 2019 00:00:00 +1100</pubDate>
       
-      <guid>/post/worldclimtiles/</guid>
+      <guid>https://kapitzas.github.io/post/worldclimtiles/</guid>
       <description>&lt;p&gt;I am regularly working with the WorldClim data set and in some cases had to download and merge the individual high res (0.5 arcmin) tiles for my work. To make things easier I made a little R package out of my workflow that does that really quickly and I will briefly discribe here with examples how it works.&lt;/p&gt;
 
 &lt;p&gt;Download the package from GitHub:&lt;/p&gt;
