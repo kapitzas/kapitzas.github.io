@@ -1,0 +1,55 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Simon Kapitza on Simon Kapitza</title>
+    <link>https://kapitzas.github.io/</link>
+    <description>Recent content in Simon Kapitza on Simon Kapitza</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy;2019</copyright>
+    <lastBuildDate>Tue, 26 Mar 2019 00:00:00 +1100</lastBuildDate>
+    <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>WorldClimTiles</title>
+      <link>https://kapitzas.github.io/post/worldclimtiles/</link>
+      <pubDate>Tue, 26 Mar 2019 00:00:00 +1100</pubDate>
+      
+      <guid>https://kapitzas.github.io/post/worldclimtiles/</guid>
+      <description>&lt;p&gt;I am regularly working with the WorldClim data set and in some cases had to download and merge the individual high res (0.5 arcmin) tiles for my work. To make things easier I made a little R package out of my workflow that does that really quickly and I will briefly discribe here with examples how it works.&lt;/p&gt;
+
+&lt;p&gt;Download the package from GitHub:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;devtools::install_github(&amp;quot;kapitzas/WorldClimTiles&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Load the package and download a boundary file for France. France is a good example because it intersects with two WorldClim tiles.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;require(&amp;quot;WorldClimTiles&amp;quot;)
+require(&amp;quot;raster&amp;quot;)
+
+#Download polygon feature for France
+fra &amp;lt;- getData(&amp;quot;GADM&amp;quot;, country = &amp;quot;FRA&amp;quot;, level = 0)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Get the &lt;a href=&#34;https://gis.stackexchange.com/questions/263414/acquiring-and-understanding-data-from-world-clim tiles&#34; target=&#34;_blank&#34;&gt;WorldClim tile names&lt;/a&gt; that are intersected by the boundary shape of France.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#Get WorldClim tile names 
+tilenames &amp;lt;- tile_name(fra)
+tilenames
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Download the two tiles (&amp;ldquo;15&amp;rdquo;, &amp;ldquo;16&amp;rdquo;). The default download path is the current working directory.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#Download tiles
+tiles &amp;lt;- tile_get(tilenames, &amp;quot;bio&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Merge the downloaded tiles layer by layer. The function produces a raster stack that contains the merged layers with the correct variable names.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;merged &amp;lt;- tile_merge(tiles)
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
