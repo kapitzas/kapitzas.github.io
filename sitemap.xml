@@ -2,79 +2,79 @@
   
     <url>
     
-      <loc>https://kapitzas.github.io/post/</loc>
+      <loc>/post/</loc>
       <lastmod>2019-03-26T00:00:00+11:00</lastmod>
     </url>
   
     <url>
     
-      <loc>https://kapitzas.github.io/tags/r/</loc>
-      <lastmod>2019-03-26T00:00:00+11:00</lastmod>
-      <priority>0</priority>
-    </url>
-  
-    <url>
-    
-      <loc>https://kapitzas.github.io/</loc>
+      <loc>/tags/r/</loc>
       <lastmod>2019-03-26T00:00:00+11:00</lastmod>
       <priority>0</priority>
     </url>
   
     <url>
     
-      <loc>https://kapitzas.github.io/tags/</loc>
+      <loc>/</loc>
       <lastmod>2019-03-26T00:00:00+11:00</lastmod>
       <priority>0</priority>
     </url>
   
     <url>
     
-      <loc>https://kapitzas.github.io/post/worldclimtiles/</loc>
+      <loc>/tags/</loc>
+      <lastmod>2019-03-26T00:00:00+11:00</lastmod>
+      <priority>0</priority>
+    </url>
+  
+    <url>
+    
+      <loc>/post/worldclimtiles/</loc>
       <lastmod>2019-03-26T00:00:00+11:00</lastmod>
     </url>
   
     <url>
     
-      <loc>https://kapitzas.github.io/author/admin/</loc>
+      <loc>/author/admin/</loc>
     </url>
   
     <url>
     
-      <loc>https://kapitzas.github.io/authors/</loc>
+      <loc>/authors/</loc>
       <priority>0</priority>
     </url>
   
     <url>
     
-      <loc>https://kapitzas.github.io/author/</loc>
+      <loc>/author/</loc>
       <priority>0</priority>
     </url>
   
     <url>
     
-      <loc>https://kapitzas.github.io/categories/</loc>
+      <loc>/categories/</loc>
       <priority>0</priority>
     </url>
   
     <url>
     
-      <loc>https://kapitzas.github.io/publication_types/</loc>
+      <loc>/publication_types/</loc>
       <priority>0</priority>
     </url>
   
     <url>
     
-      <loc>https://kapitzas.github.io/publication/</loc>
+      <loc>/publication/</loc>
     </url>
   
     <url>
     
-      <loc>https://kapitzas.github.io/talk/</loc>
+      <loc>/talk/</loc>
     </url>
   
     <url>
     
-      <loc>https://kapitzas.github.io/authors/admin/</loc>
+      <loc>/authors/admin/</loc>
       <priority>0</priority>
     </url>
   
