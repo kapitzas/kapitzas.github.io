@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Simon Kapitza</title>
-    <link>https://kapitzas.github.io/post/</link>
+    <link>/post/</link>
     <description>Recent content in Posts on Simon Kapitza</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy;2019</copyright>
     <lastBuildDate>Tue, 26 Mar 2019 00:00:00 +1100</lastBuildDate>
     
-	<atom:link href="https://kapitzas.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>WorldClimTiles</title>
-      <link>https://kapitzas.github.io/post/worldclimtiles/</link>
+      <title>Downloading and merging WorldClim tiles</title>
+      <link>/post/worldclimtiles/</link>
       <pubDate>Tue, 26 Mar 2019 00:00:00 +1100</pubDate>
       
-      <guid>https://kapitzas.github.io/post/worldclimtiles/</guid>
+      <guid>/post/worldclimtiles/</guid>
       <description>A handy package to download and merge tiled WorldClim and SRTM data</description>
     </item>
     
