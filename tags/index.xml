@@ -21,5 +21,32 @@
       <description></description>
     </item>
     
+    <item>
+      <title>worldclim</title>
+      <link>/tags/worldclim/</link>
+      <pubDate>Tue, 26 Mar 2019 00:00:00 +1100</pubDate>
+      
+      <guid>/tags/worldclim/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>author guidelines</title>
+      <link>/tags/author-guidelines/</link>
+      <pubDate>Sat, 26 May 2018 00:00:00 +1000</pubDate>
+      
+      <guid>/tags/author-guidelines/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>journal</title>
+      <link>/tags/journal/</link>
+      <pubDate>Sat, 26 May 2018 00:00:00 +1000</pubDate>
+      
+      <guid>/tags/journal/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

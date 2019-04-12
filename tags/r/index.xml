@@ -21,14 +21,5 @@
       <description>A handy package to download and merge tiled WorldClim and SRTM data</description>
     </item>
     
-    <item>
-      <title>Links to publication guidelines</title>
-      <link>/post/journals/</link>
-      <pubDate>Sat, 26 May 2018 00:00:00 +1000</pubDate>
-      
-      <guid>/post/journals/</guid>
-      <description>A list of links to the publication guidelines of major ecology journals</description>
-    </item>
-    
   </channel>
 </rss>
