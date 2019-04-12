@@ -328,7 +328,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    1 min read
+    2 min read
   </span>
   
 
@@ -368,7 +368,7 @@
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <p>I am regularly working with the WorldClim data set and in some cases had to download and merge the individual high res (0.5 arcmin) tiles for my work. To make things easier I made a little R package out of my workflow that does that really quickly and I will briefly discribe here with examples how it works.</p>
+      <p>I am regularly working with the WorldClim data set and in some cases had to download and merge the individual high res (0.5 arcmin) tiles for my work. To make things easier I made a little R package out of my workflow that does that really quickly and I will briefly discribe here with examples how it works. I&rsquo;ve since also added support for 90m SRTM tiles that are also downloadable via the raster package, please refer to help files fore details.</p>
 
 <p>Download the package from GitHub:</p>
 
@@ -397,10 +397,15 @@ tilenames
 tiles &lt;- tile_get(tilenames, &quot;bio&quot;)
 </code></pre>
 
-<p>Merge the downloaded tiles layer by layer. The function produces a raster stack that contains the merged layers with the correct variable names.</p>
+<p>The downloaded tiles will look something like this if you plot them next to each other:
+<img src="/img/plotting.png" alt="Example image" />
+Merge the downloaded tiles layer by layer. The function produces a raster stack that contains the merged layers with the correct variable names.</p>
 
 <pre><code>merged &lt;- tile_merge(tiles)
 </code></pre>
+
+<p>Plotting the merged raster:
+<img src="/img/plotting2.png" alt="merged" /></p>
 
     </div>
 
