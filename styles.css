@@ -39,7 +39,7 @@ body {
   font-size: 1rem;
   line-height: inherit;
   color: inherit;
-  background-color: #f4f4f4;
+  background-color: #fffff;
   margin-top: 70px; /* Offset body content by navbar height. */
   padding-top: 0;
   counter-reset: captions;
@@ -265,7 +265,7 @@ small,
 .search-results {
   transform: scale(0);
   -webkit-transform: scale(0);
-  background-color: #f4f4f4;
+  background-color: #fffff;
   bottom: 0;
   left: 0;
   right: 0;
@@ -308,7 +308,7 @@ small,
   position: -webkit-sticky;
   position: sticky;
   top: 70px;  /* Navbar height. */
-  background-color: #f4f4f4;
+  background-color: #fffff;
   padding-top: 2rem;
   padding-bottom: 1rem;
 }
@@ -395,7 +395,7 @@ small,
  **************************************************/
 
 .modal-content {
-  background: #f4f4f4;
+  background: #fffff;
 }
 
 .modal-title {

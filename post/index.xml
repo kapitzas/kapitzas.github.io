@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy;2019</copyright>
-    <lastBuildDate>Tue, 26 Mar 2019 00:00:00 +1100</lastBuildDate>
+    <lastBuildDate>Tue, 26 Mar 2019 00:00:00 +0100</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>Downloading and merging WorldClim tiles</title>
       <link>/post/worldclimtiles/</link>
-      <pubDate>Tue, 26 Mar 2019 00:00:00 +1100</pubDate>
+      <pubDate>Tue, 26 Mar 2019 00:00:00 +0100</pubDate>
       
       <guid>/post/worldclimtiles/</guid>
       <description>A handy package to download and merge tiled WorldClim and SRTM data</description>
@@ -24,7 +24,7 @@
     <item>
       <title>Links to publication guidelines</title>
       <link>/post/journals/</link>
-      <pubDate>Sat, 26 May 2018 00:00:00 +1000</pubDate>
+      <pubDate>Sat, 26 May 2018 00:00:00 +0200</pubDate>
       
       <guid>/post/journals/</guid>
       <description>A list of links to the publication guidelines of major ecology journals</description>
