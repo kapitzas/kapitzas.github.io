@@ -1,20 +1,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Simon Kapitza on Simon Kapitza</title>
-    <link>/</link>
+    <link>https://kapitzas.github.io/</link>
     <description>Recent content in Simon Kapitza on Simon Kapitza</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&amp;copy;2019</copyright>
-    <lastBuildDate>Tue, 26 Mar 2019 00:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 09 Mar 2020 00:00:00 +0000</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Predicting the ecological outcomes of global consumption</title>
+      <link>https://kapitzas.github.io/publication/2020_bal/</link>
+      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kapitzas.github.io/publication/2020_bal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Assessing biophysical and socio-economic impacts of climate change on avian biodiversity</title>
+      <link>https://kapitzas.github.io/publication/2020_kapitza/</link>
+      <pubDate>Fri, 07 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kapitzas.github.io/publication/2020_kapitza/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Downloading and merging WorldClim tiles</title>
-      <link>/post/worldclimtiles/</link>
+      <link>https://kapitzas.github.io/post/worldclimtiles/</link>
       <pubDate>Tue, 26 Mar 2019 00:00:00 +0100</pubDate>
       
-      <guid>/post/worldclimtiles/</guid>
+      <guid>https://kapitzas.github.io/post/worldclimtiles/</guid>
       <description>&lt;p&gt;I am regularly working with the WorldClim data set and in some cases had to download and merge the individual high res (0.5 arcmin) tiles for my work. To make things easier I made a little R package out of my workflow that does that really quickly and I will briefly discribe here with examples how it works. I&amp;rsquo;ve since also added support for 90m SRTM tiles that are also downloadable via the raster package, please refer to help files fore details.&lt;/p&gt;
 
 &lt;p&gt;Download the package from GitHub:&lt;/p&gt;
@@ -45,23 +63,23 @@ tiles &amp;lt;- tile_get(tilenames, &amp;quot;bio&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The downloaded tiles will look something like this if you plot them next to each other:
-&lt;img src=&#34;/img/plotting.png&#34; alt=&#34;Example image&#34; /&gt;
+&lt;img src=&#34;https://kapitzas.github.io/img/plotting.png&#34; alt=&#34;Example image&#34; /&gt;
 Merge the downloaded tiles layer by layer. The function produces a raster stack that contains the merged layers with the correct variable names.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;merged &amp;lt;- tile_merge(tiles)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Plotting the merged raster:
-&lt;img src=&#34;/img/plotting2.png&#34; alt=&#34;merged&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://kapitzas.github.io/img/plotting2.png&#34; alt=&#34;merged&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Links to publication guidelines</title>
-      <link>/post/journals/</link>
+      <link>https://kapitzas.github.io/post/journals/</link>
       <pubDate>Sat, 26 May 2018 00:00:00 +0200</pubDate>
       
-      <guid>/post/journals/</guid>
+      <guid>https://kapitzas.github.io/post/journals/</guid>
       <description>&lt;p&gt;I finally got around to starting a manuscript on my first PhD publication. Part of the reason why it&amp;rsquo;s been taking me so long to get started is because I&amp;rsquo;ve had zero orientation in the jungle of different submission formats and journals. Below the submission types of major ecology journals, including links to author guidelines (just click on the submission formats).&lt;/p&gt;
 
 &lt;p&gt;This list is definitely really not complete, so please let me know what I missed and I can keep adding to this.
