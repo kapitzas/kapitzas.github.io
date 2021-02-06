@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>author guidelines on Simon Kapitza</title>
-    <link>/tags/author-guidelines/</link>
+    <link>https://kapitzas.github.io/tags/author-guidelines/</link>
     <description>Recent content in author guidelines on Simon Kapitza</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy;2019</copyright>
     <lastBuildDate>Sat, 26 May 2018 00:00:00 +0200</lastBuildDate>
     
-	<atom:link href="/tags/author-guidelines/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kapitzas.github.io/tags/author-guidelines/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Links to publication guidelines</title>
-      <link>/post/journals/</link>
+      <link>https://kapitzas.github.io/post/journals/</link>
       <pubDate>Sat, 26 May 2018 00:00:00 +0200</pubDate>
       
-      <guid>/post/journals/</guid>
+      <guid>https://kapitzas.github.io/post/journals/</guid>
       <description>A list of links to the publication guidelines of major ecology journals</description>
     </item>
     
