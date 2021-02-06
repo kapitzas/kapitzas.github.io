@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>admin on Simon Kapitza</title>
-    <link>/authors/admin/</link>
+    <link>https://kapitzas.github.io/authors/admin/</link>
     <description>Recent content in admin on Simon Kapitza</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy;2019</copyright>
     
-	<atom:link href="/authors/admin/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kapitzas.github.io/authors/admin/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title></title>
-      <link>/author/admin/</link>
+      <link>https://kapitzas.github.io/author/admin/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/author/admin/</guid>
-      <description>I am a PhD Candidate at the Quantitative &amp;amp; Applied Ecology Group, a diverse and dynamic ecological modelling group at the University of Melbourne. Despite doing my PhD in Australia, I have lived in my home Germany since for the past year where I am now also affiliated as research and teaching assistant with the new Macroecology Lab at Potsdam University.
+      <guid>https://kapitzas.github.io/author/admin/</guid>
+      <description>I am a PhD Candidate at the Quantitative &amp;amp; Applied Ecology Group, a diverse and dynamic ecological modelling group at the University of Melbourne. Despite being enrolled in Australia, I have permanently returned to Berlin and successfully continued my work remotely. Since my return, I have also been affiliated with the Macroecology Lab at Potsdam University as research and teaching assistant.
 I am an interdisciplinary global change ecologist researching interactions between socio-economic and bio- physical drivers of biodiversity change.</description>
     </item>
     

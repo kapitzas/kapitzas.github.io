@@ -2,103 +2,94 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Authors on Simon Kapitza</title>
-    <link>/authors/</link>
+    <link>https://kapitzas.github.io/authors/</link>
     <description>Recent content in Authors on Simon Kapitza</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy;2019</copyright>
-    <lastBuildDate>Sun, 07 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 Mar 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/authors/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kapitzas.github.io/authors/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Brendan A. Wintle</title>
-      <link>/authors/brendan-a.-wintle/</link>
-      <pubDate>Sun, 07 Feb 2021 00:00:00 +0000</pubDate>
+      <link>https://kapitzas.github.io/authors/brendan-a.-wintle/</link>
+      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>/authors/brendan-a.-wintle/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Natasha C. R. Cadenhead</title>
-      <link>/authors/natasha-c.-r.-cadenhead/</link>
-      <pubDate>Sun, 07 Feb 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/authors/natasha-c.-r.-cadenhead/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Nick Golding</title>
-      <link>/authors/nick-golding/</link>
-      <pubDate>Sun, 07 Feb 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/authors/nick-golding/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Payal Bal</title>
-      <link>/authors/payal-bal/</link>
-      <pubDate>Sun, 07 Feb 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/authors/payal-bal/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Pham Van Ha</title>
-      <link>/authors/pham-van-ha/</link>
-      <pubDate>Sun, 07 Feb 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/authors/pham-van-ha/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Simon Kapitza</title>
-      <link>/authors/simon-kapitza/</link>
-      <pubDate>Sun, 07 Feb 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/authors/simon-kapitza/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Tom Kompas</title>
-      <link>/authors/tom-kompas/</link>
-      <pubDate>Sun, 07 Feb 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/authors/tom-kompas/</guid>
+      <guid>https://kapitzas.github.io/authors/brendan-a.-wintle/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Brendan Wintle</title>
-      <link>/authors/brendan-wintle/</link>
+      <link>https://kapitzas.github.io/authors/brendan-wintle/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>/authors/brendan-wintle/</guid>
+      <guid>https://kapitzas.github.io/authors/brendan-wintle/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Natasha Cadenhead</title>
-      <link>/authors/natasha-cadenhead/</link>
+      <link>https://kapitzas.github.io/authors/natasha-cadenhead/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>/authors/natasha-cadenhead/</guid>
+      <guid>https://kapitzas.github.io/authors/natasha-cadenhead/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nick Golding</title>
+      <link>https://kapitzas.github.io/authors/nick-golding/</link>
+      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kapitzas.github.io/authors/nick-golding/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Payal Bal</title>
+      <link>https://kapitzas.github.io/authors/payal-bal/</link>
+      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kapitzas.github.io/authors/payal-bal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pham Van Ha</title>
+      <link>https://kapitzas.github.io/authors/pham-van-ha/</link>
+      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kapitzas.github.io/authors/pham-van-ha/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Simon Kapitza</title>
+      <link>https://kapitzas.github.io/authors/simon-kapitza/</link>
+      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kapitzas.github.io/authors/simon-kapitza/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tom Kompas</title>
+      <link>https://kapitzas.github.io/authors/tom-kompas/</link>
+      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://kapitzas.github.io/authors/tom-kompas/</guid>
       <description></description>
     </item>
     
     <item>
       <title>admin</title>
-      <link>/authors/admin/</link>
+      <link>https://kapitzas.github.io/authors/admin/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/authors/admin/</guid>
+      <guid>https://kapitzas.github.io/authors/admin/</guid>
       <description></description>
     </item>
     
