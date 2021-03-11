@@ -6,8 +6,134 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&amp;copy;2019</copyright>
-    <lastBuildDate>Sun, 07 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 11 Mar 2021 00:00:00 +0100</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Accounting for GCM uncertainty</title>
+      <link>https://kapitzas.github.io/post/gcm/</link>
+      <pubDate>Thu, 11 Mar 2021 00:00:00 +0100</pubDate>
+      
+      <guid>https://kapitzas.github.io/post/gcm/</guid>
+      <description>&lt;p&gt;I sometimes work with spatially downscaled future projections of bioclim variables (available for download on the &lt;a href=&#34;http://www.worldclim.com/cmip5_30s&#34; target=&#34;_blank&#34;&gt;WorldClim website&lt;/a&gt;). Since these data sets are quite large, it is tempting to just pick out one GCM without accounting for the variability of predictions between models.&lt;/p&gt;
+
+&lt;p&gt;For my first PhD paper (&lt;a href=&#34;https://www.nature.com/articles/s41598-021-82474-z&#34; target=&#34;_blank&#34;&gt;Kapitza et al. 2021&lt;/a&gt;) I made the effort of downloading GCM predictions (in this case under RCP 2.6 and RCP 8.5) and estimating the quartiles of the GCM predictions on each cell to account for GCM uncertainty.&lt;/p&gt;
+
+&lt;p&gt;Depending on the system this might take a few days to run, but in the end you have the lower and upper quartile and the median of projections made for each scenario and variable across all the different GCM, which helps to account for model uncertainty when using projected climate data.&lt;/p&gt;
+
+&lt;p&gt;These are the required packages:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;library(raster)
+library(doParallel)
+library(BBmisc)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This downloads the GCM predictions of the 19 bioclim variables at 0.5 arcmin resolution under RCP 2.6 and 8.5. Make sure you have around 100 GB of disk space for this.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#--------------------------------#
+#### 1. Download all GCM data ####
+#--------------------------------#
+
+# Resoltuion to be downloaded
+res &amp;lt;- 0.5
+
+# RCP to be downloaded
+scens &amp;lt;- c(&amp;quot;26&amp;quot;, &amp;quot;85&amp;quot;)
+
+# Which GCM are we inlcuding
+models &amp;lt;- c(&amp;quot;GF&amp;quot;, &amp;quot;MP&amp;quot;, &amp;quot;BC&amp;quot;, &amp;quot;CC&amp;quot;, &amp;quot;CN&amp;quot;, &amp;quot;GS&amp;quot;, &amp;quot;HD&amp;quot;, &amp;quot;HE&amp;quot;, &amp;quot;IP&amp;quot;, &amp;quot;MI&amp;quot;, &amp;quot;MR&amp;quot;, &amp;quot;MC&amp;quot;, &amp;quot;MG&amp;quot;, &amp;quot;NO&amp;quot;)
+
+# Download to temp folder (will take a while, &amp;gt; 30gb of data)
+for(i in 1:length(models)){
+  for (j in 1:length(scens)){
+    f &amp;lt;- tryCatch(raster::getData(&amp;quot;CMIP5&amp;quot;, rcp = scens[j], year = 70, model = models[i], res = res, var = &amp;quot;bio&amp;quot;, path = download_path), error = function (e) NA)
+    if(class(f) != &amp;quot;RasterStack&amp;quot;){next}
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This next part loops through the required scenarios and variables, loading the data from all GCM for each variable and scenario. The data is then devided into 500 chunks (each still containing almost 1E6 cells) and processed in parallel. The chunks need to be processed in batches to make sure that the data returned from individual workers (which is combined into a matrix using rbind) doesn&amp;rsquo;t exceed memory limits. Processed batches of chunks are stored to disk for the same reason. When all batches of a variable have been processed, they are loaded back in and written into a mask raster (you can create a mask from one of the downloaded layers). I ran this on a HPC cluster on 5 parallel cores and each variable took about 30 minutes to finish. So running this sequentially will probably take about 2.5 hours per processed variable.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#------------------------------#
+#### 2. Calculate quartiles ####
+#------------------------------#
+# For each variable and scenario, calcualtes the cell-wise quartiles across GCM.
+
+# Load and make mask
+cmip_layers &amp;lt;- list.files(file.path(temp_path, &amp;quot;cmip5&amp;quot;), pattern = &amp;quot;tif&amp;quot;, full.names = TRUE, recursive = TRUE)
+mask &amp;lt;- raster(file.path(&amp;quot;.&amp;quot;, &amp;quot;data&amp;quot;, &amp;quot;temp&amp;quot;, &amp;quot;mask.tif&amp;quot;))
+
+# Get non-na indices and divide them up into 500 chuncks (ecah  chunk still contains almost 1E6 cells)
+inds &amp;lt;- which(!is.na(mask[]))
+inds_chunks &amp;lt;- chunk(inds, n.chunks = 500)
+inds_store &amp;lt;- chunk(1:length(inds), n.chunks = 500)
+proc_batch &amp;lt;- chunk(1:500, n.chunks = 50)
+
+qs &amp;lt;- c(&amp;quot;q1&amp;quot;, &amp;quot;q2&amp;quot;, &amp;quot;q3&amp;quot;)
+logfile &amp;lt;- file.path(data_path, paste0(&amp;quot;quantile_log.txt&amp;quot;))
+writeLines(c(&amp;quot;&amp;quot;), logfile)
+
+# Loop through scenarios
+for(i in 2:length(scens)) {
+  
+  # Loop through variables
+  for(j in 1:19){
+    
+    # Load data from all GCM for current variable and scenairo
+    fstack &amp;lt;- stack(cmip_layers[grepl(cmip_layers, pattern = paste0(scens[i], &amp;quot;bi70&amp;quot;, j,&amp;quot;.tif&amp;quot;))])
+    # Calcualte quantiles chunk by chunk
+    
+    # Loop thorugh processing batches (each includes 50 chunks)
+    for(m in 1:length(proc_batch)){
+      ks &amp;lt;- proc_batch[[m]]
+      # Loop through chunks
+      
+      cl &amp;lt;- makeCluster(5)
+      registerDoParallel(cl)
+      
+      quantiles &amp;lt;- foreach(k = ks, .combine = rbind, .packages = c(&amp;quot;matrixStats&amp;quot;, &amp;quot;raster&amp;quot;)) %dopar% {
+        cat(paste(&amp;quot;scen &amp;quot;, i, &amp;quot; bio &amp;quot;, j, &amp;quot; chunk &amp;quot;, k, &amp;quot;\n&amp;quot;), file = logfile, append = T)
+        fstack_sub &amp;lt;- fstack[inds_chunks[[k]]]
+        matrixStats::rowQuantiles(fstack_sub, probs = c(0.25, 0.5, 0.75))
+      }
+      stopCluster(cl)
+      
+      # store batch to disk
+      saveRDS(quantiles[,1], file.path(batch_path, paste0(&amp;quot;q1_&amp;quot;, sprintf(&amp;quot;%02d&amp;quot;, m), &amp;quot;.rds&amp;quot;)))
+      saveRDS(quantiles[,2], file.path(batch_path, paste0(&amp;quot;q2_&amp;quot;, sprintf(&amp;quot;%02d&amp;quot;, m), &amp;quot;.rds&amp;quot;)))
+      saveRDS(quantiles[,3], file.path(batch_path, paste0(&amp;quot;q3_&amp;quot;, sprintf(&amp;quot;%02d&amp;quot;, m), &amp;quot;.rds&amp;quot;)))
+      
+    }
+    
+    # load batches and write rasters
+    for(l in 1:3) {
+      cat(paste(&amp;quot;writing quantile &amp;quot;, qs[l], &amp;quot; bio &amp;quot;, j, &amp;quot; scen &amp;quot;, i, &amp;quot;\n&amp;quot;), file = logfile, append = T)
+      qfiles &amp;lt;- list.files(batch_path, pattern = qs[l], full.names = TRUE)
+      out &amp;lt;- numeric()
+      
+      for(p in 1:length(qfiles)){
+        print(p)
+        out &amp;lt;- c(out, readRDS(qfiles[p]))
+      }
+      
+      # write quantiles into raster files and store on disk
+      q &amp;lt;- mask
+      q[inds] &amp;lt;- out
+      writeRaster(q, file.path(&amp;quot;.&amp;quot;, &amp;quot;data&amp;quot;, &amp;quot;temp&amp;quot;, &amp;quot;output quartiles&amp;quot;, paste0(qs[l], &amp;quot;_&amp;quot;, scens[i], &amp;quot;bi70&amp;quot;, j,&amp;quot;.tif&amp;quot;)), format = &amp;quot;GTiff&amp;quot;, overwrite = TRUE)
+      unlink(qfiles)
+    }
+    
+    # this is extremely memory-intensive, so we need to do some tidying up after eaach processed variable
+    rm(out, q)
+    gc()
+    removeTmpFiles(h=0)
+    # add link to Rs temp folder here
+    unlink(list.files(&amp;quot;/tmp&amp;quot;, full.names = TRUE), recursive = T)
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>Assessing biophysical and socio-economic impacts of climate change on regional avian biodiversity</title>

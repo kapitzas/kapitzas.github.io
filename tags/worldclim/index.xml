@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy;2019</copyright>
-    <lastBuildDate>Tue, 26 Mar 2019 00:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Thu, 11 Mar 2021 00:00:00 +0100</lastBuildDate>
     
 	<atom:link href="https://kapitzas.github.io/tags/worldclim/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Accounting for GCM uncertainty</title>
+      <link>https://kapitzas.github.io/post/gcm/</link>
+      <pubDate>Thu, 11 Mar 2021 00:00:00 +0100</pubDate>
+      
+      <guid>https://kapitzas.github.io/post/gcm/</guid>
+      <description>Calculating cell-level 1st and 3rd quartiles and medians across Global Circulation Models</description>
+    </item>
     
     <item>
       <title>Downloading and merging WorldClim tiles</title>
