@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Publications on Simon Kapitza</title>
-    <link>/publication/</link>
+    <link>https://kapitzas.github.io/publication/</link>
     <description>Recent content in Publications on Simon Kapitza</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy;2019</copyright>
     <lastBuildDate>Sun, 07 Feb 2021 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/publication/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kapitzas.github.io/publication/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Assessing biophysical and socio-economic impacts of climate change on regional avian biodiversity</title>
-      <link>/publication/2021_kapitza/</link>
+      <link>https://kapitzas.github.io/publication/2021_kapitza/</link>
       <pubDate>Sun, 07 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>/publication/2021_kapitza/</guid>
+      <guid>https://kapitzas.github.io/publication/2021_kapitza/</guid>
       <description></description>
     </item>
     
     <item>
       <title>A predictive model of fractional land use</title>
-      <link>/publication/2021_kapitza2/</link>
+      <link>https://kapitzas.github.io/publication/2021_kapitza2/</link>
       <pubDate>Tue, 02 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>/publication/2021_kapitza2/</guid>
+      <guid>https://kapitzas.github.io/publication/2021_kapitza2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Predicting the ecological outcomes of global consumption</title>
-      <link>/publication/2020_bal/</link>
+      <link>https://kapitzas.github.io/publication/2020_bal/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>/publication/2020_bal/</guid>
+      <guid>https://kapitzas.github.io/publication/2020_bal/</guid>
       <description></description>
     </item>
     

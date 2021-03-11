@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Natasha Cadenhead on Simon Kapitza</title>
-    <link>/authors/natasha-cadenhead/</link>
+    <link>https://kapitzas.github.io/authors/natasha-cadenhead/</link>
     <description>Recent content in Natasha Cadenhead on Simon Kapitza</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy;2019</copyright>
     <lastBuildDate>Mon, 09 Mar 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/authors/natasha-cadenhead/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kapitzas.github.io/authors/natasha-cadenhead/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Predicting the ecological outcomes of global consumption</title>
-      <link>/publication/2020_bal/</link>
+      <link>https://kapitzas.github.io/publication/2020_bal/</link>
       <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>/publication/2020_bal/</guid>
+      <guid>https://kapitzas.github.io/publication/2020_bal/</guid>
       <description></description>
     </item>
     

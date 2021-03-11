@@ -28,10 +28,10 @@
   
     
   
-  <meta name="description" content="A handy package to download and merge tiled WorldClim and SRTM data">
+  <meta name="description" content="Calculating cell-level 1st and 3rd quartiles and medians across Global Circulation Models">
 
   
-  <link rel="alternate" hreflang="en-us" href="https://kapitzas.github.io/post/worldclimtiles/">
+  <link rel="alternate" hreflang="en-us" href="/post/gcm/">
 
   
 
@@ -96,15 +96,15 @@
   
 
   
-  <link rel="alternate" href="https://kapitzas.github.io/index.xml" type="application/rss+xml" title="Simon Kapitza">
-  <link rel="feed" href="https://kapitzas.github.io/index.xml" type="application/rss+xml" title="Simon Kapitza">
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Simon Kapitza">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Simon Kapitza">
   
 
   <link rel="manifest" href="/site.webmanifest">
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="https://kapitzas.github.io/post/worldclimtiles/">
+  <link rel="canonical" href="/post/gcm/">
 
   
   
@@ -118,21 +118,21 @@
   <meta property="twitter:creator" content="@@simonecology">
   
   <meta property="og:site_name" content="Simon Kapitza">
-  <meta property="og:url" content="https://kapitzas.github.io/post/worldclimtiles/">
-  <meta property="og:title" content="Downloading and merging WorldClim tiles | Simon Kapitza">
-  <meta property="og:description" content="A handy package to download and merge tiled WorldClim and SRTM data"><meta property="og:image" content="https://kapitzas.github.io/post/worldclimtiles/featured.png">
+  <meta property="og:url" content="/post/gcm/">
+  <meta property="og:title" content="Accounting for GCM uncertainty | Simon Kapitza">
+  <meta property="og:description" content="Calculating cell-level 1st and 3rd quartiles and medians across Global Circulation Models"><meta property="og:image" content="/img/si.jpg">
   <meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2019-03-26T00:00:00&#43;01:00">
+  <meta property="article:published_time" content="2021-03-07T00:00:00&#43;01:00">
   
-  <meta property="article:modified_time" content="2019-03-26T00:00:00&#43;01:00">
-  
-
+  <meta property="article:modified_time" content="2021-03-07T00:00:00&#43;01:00">
   
 
   
 
-  <title>Downloading and merging WorldClim tiles | Simon Kapitza</title>
+  
+
+  <title>Accounting for GCM uncertainty | Simon Kapitza</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
@@ -313,7 +313,7 @@
   
   
 <div class="article-container pt-3">
-  <h1 itemprop="name">Downloading and merging WorldClim tiles</h1>
+  <h1 itemprop="name">Accounting for GCM uncertainty</h1>
 
   
 
@@ -322,8 +322,8 @@
 
 
 
-<meta content="2019-03-26 00:00:00 &#43;0100 CET" itemprop="datePublished">
-<meta content="2019-03-26 00:00:00 &#43;0100 CET" itemprop="dateModified">
+<meta content="2021-03-07 00:00:00 &#43;0100 CET" itemprop="datePublished">
+<meta content="2021-03-07 00:00:00 &#43;0100 CET" itemprop="dateModified">
 
 <div class="article-metadata">
 
@@ -336,7 +336,7 @@
     
       
     
-    <time>Mar 26, 2019</time>
+    <time>Mar 7, 2021</time>
   </span>
   
 
@@ -345,7 +345,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    2 min read
+    4 min read
   </span>
   
 
@@ -387,44 +387,123 @@
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <p>I am regularly working with the WorldClim data set and in some cases had to download and merge the individual high res (0.5 arcmin) tiles for my work. To make things easier I made a little R package out of my workflow that does that really quickly and I will briefly discribe here with examples how it works. I&rsquo;ve since also added support for 90m SRTM tiles that are also downloadable via the raster package, please refer to help files fore details.</p>
+      <p>I sometimes work with spatially downscaled future projections of bioclim variables (available for download on the <a href="http://www.worldclim.com/cmip5_30s" target="_blank">WorldClim website</a>). Since these data sets are quite large, it is tempting to just pick out one GCM without accounting for the variability of predictions between models.</p>
 
-<p>Download the package from GitHub:</p>
+<p>For my first PhD paper (<a href="https://www.nature.com/articles/s41598-021-82474-z" target="_blank">Kapitza et al. 2021</a>) I made the effort of downloading GCM predictions (in this case under RCP 2.6 and RCP 8.5) and estimating the quartiles of the GCM predictions on each cell to account for GCM uncertainty.</p>
 
-<pre><code>devtools::install_github(&quot;kapitzas/WorldClimTiles&quot;)
+<p>Depending on the system this might take a few days to run, but in the end you have the lower and upper quartile and the median of projections made for each scenario and variable across all the different GCM, which helps to account for model uncertainty when using projected climate data.</p>
+
+<p>These are the required packages:</p>
+
+<pre><code>library(raster)
+library(doParallel)
+library(BBmisc)
 </code></pre>
 
-<p>Load the package and download a boundary file for France. France is a good example because it intersects with two WorldClim tiles.</p>
+<p>This downloads the GCM predictions of the 19 bioclim variables at 0.5 arcmin resolution under RCP 2.6 and 8.5. Make sure you have around 100 GB of disk space for this.</p>
 
-<pre><code>require(&quot;WorldClimTiles&quot;)
-require(&quot;raster&quot;)
+<pre><code>#--------------------------------#
+#### 1. Download all GCM data ####
+#--------------------------------#
 
-#Download polygon feature for France
-fra &lt;- getData(&quot;GADM&quot;, country = &quot;FRA&quot;, level = 0)
+# Resoltuion to be downloaded
+res &lt;- 0.5
+
+# RCP to be downloaded
+scens &lt;- c(&quot;26&quot;, &quot;85&quot;)
+
+# Which GCM are we inlcuding
+models &lt;- c(&quot;GF&quot;, &quot;MP&quot;, &quot;BC&quot;, &quot;CC&quot;, &quot;CN&quot;, &quot;GS&quot;, &quot;HD&quot;, &quot;HE&quot;, &quot;IP&quot;, &quot;MI&quot;, &quot;MR&quot;, &quot;MC&quot;, &quot;MG&quot;, &quot;NO&quot;)
+
+# Download to temp folder (will take a while, &gt; 30gb of data)
+for(i in 1:length(models)){
+  for (j in 1:length(scens)){
+    f &lt;- tryCatch(raster::getData(&quot;CMIP5&quot;, rcp = scens[j], year = 70, model = models[i], res = res, var = &quot;bio&quot;, path = download_path), error = function (e) NA)
+    if(class(f) != &quot;RasterStack&quot;){next}
+  }
+}
 </code></pre>
 
-<p>Get the <a href="https://gis.stackexchange.com/questions/263414/acquiring-and-understanding-data-from-world-clim tiles" target="_blank">WorldClim tile names</a> that are intersected by the boundary shape of France.</p>
+<p>This next part loops through the required scenarios and variables, loading the data from all GCM for each variable and scenario. The data is then devided into 500 chunks (each still containing almost 1E6 cells) and processed in parallel. The chunks need to be processed in batches to make sure that the data returned from individual workers (which is combined into a matrix using rbind) doesn&rsquo;t exceed memory limits. Processed batches of chunks are stored to disk for the same reason. When all batches of a variable have been processed, they are loaded back in and written into a mask raster (you can create a mask from one of the downloaded layers). I ran this on a HPC cluster on 5 parallel cores and each variable took about 30 minutes to finish. So running this sequentially will probably take about 2.5 hours per processed variable.</p>
 
-<pre><code>#Get WorldClim tile names 
-tilenames &lt;- tile_name(fra)
-tilenames
+<pre><code>#------------------------------#
+#### 2. Calculate quartiles ####
+#------------------------------#
+# For each variable and scenario, calcualtes the cell-wise quartiles across GCM.
+
+# Load and make mask
+cmip_layers &lt;- list.files(file.path(temp_path, &quot;cmip5&quot;), pattern = &quot;tif&quot;, full.names = TRUE, recursive = TRUE)
+mask &lt;- raster(file.path(&quot;.&quot;, &quot;data&quot;, &quot;temp&quot;, &quot;mask.tif&quot;))
+
+# Get non-na indices and divide them up into 500 chuncks (ecah  chunk still contains almost 1E6 cells)
+inds &lt;- which(!is.na(mask[]))
+inds_chunks &lt;- chunk(inds, n.chunks = 500)
+inds_store &lt;- chunk(1:length(inds), n.chunks = 500)
+proc_batch &lt;- chunk(1:500, n.chunks = 50)
+
+qs &lt;- c(&quot;q1&quot;, &quot;q2&quot;, &quot;q3&quot;)
+logfile &lt;- file.path(data_path, paste0(&quot;quantile_log.txt&quot;))
+writeLines(c(&quot;&quot;), logfile)
+
+# Loop through scenarios
+for(i in 2:length(scens)) {
+  
+  # Loop through variables
+  for(j in 1:19){
+    
+    # Load data from all GCM for current variable and scenairo
+    fstack &lt;- stack(cmip_layers[grepl(cmip_layers, pattern = paste0(scens[i], &quot;bi70&quot;, j,&quot;.tif&quot;))])
+    # Calcualte quantiles chunk by chunk
+    
+    # Loop thorugh processing batches (each includes 50 chunks)
+    for(m in 1:length(proc_batch)){
+      ks &lt;- proc_batch[[m]]
+      # Loop through chunks
+      
+      cl &lt;- makeCluster(5)
+      registerDoParallel(cl)
+      
+      quantiles &lt;- foreach(k = ks, .combine = rbind, .packages = c(&quot;matrixStats&quot;, &quot;raster&quot;)) %dopar% {
+        cat(paste(&quot;scen &quot;, i, &quot; bio &quot;, j, &quot; chunk &quot;, k, &quot;\n&quot;), file = logfile, append = T)
+        fstack_sub &lt;- fstack[inds_chunks[[k]]]
+        matrixStats::rowQuantiles(fstack_sub, probs = c(0.25, 0.5, 0.75))
+      }
+      stopCluster(cl)
+      
+      # store batch to disk
+      saveRDS(quantiles[,1], file.path(batch_path, paste0(&quot;q1_&quot;, sprintf(&quot;%02d&quot;, m), &quot;.rds&quot;)))
+      saveRDS(quantiles[,2], file.path(batch_path, paste0(&quot;q2_&quot;, sprintf(&quot;%02d&quot;, m), &quot;.rds&quot;)))
+      saveRDS(quantiles[,3], file.path(batch_path, paste0(&quot;q3_&quot;, sprintf(&quot;%02d&quot;, m), &quot;.rds&quot;)))
+      
+    }
+    
+    # load batches and write rasters
+    for(l in 1:3) {
+      cat(paste(&quot;writing quantile &quot;, qs[l], &quot; bio &quot;, j, &quot; scen &quot;, i, &quot;\n&quot;), file = logfile, append = T)
+      qfiles &lt;- list.files(batch_path, pattern = qs[l], full.names = TRUE)
+      out &lt;- numeric()
+      
+      for(p in 1:length(qfiles)){
+        print(p)
+        out &lt;- c(out, readRDS(qfiles[p]))
+      }
+      
+      # write quantiles into raster files and store on disk
+      q &lt;- mask
+      q[inds] &lt;- out
+      writeRaster(q, file.path(&quot;.&quot;, &quot;data&quot;, &quot;temp&quot;, &quot;output quartiles&quot;, paste0(qs[l], &quot;_&quot;, scens[i], &quot;bi70&quot;, j,&quot;.tif&quot;)), format = &quot;GTiff&quot;, overwrite = TRUE)
+      unlink(qfiles)
+    }
+    
+    # this is extremely memory-intensive, so we need to do some tidying up after eaach processed variable
+    rm(out, q)
+    gc()
+    removeTmpFiles(h=0)
+    # add link to Rs temp folder here
+    unlink(list.files(&quot;/tmp&quot;, full.names = TRUE), recursive = T)
+  }
+}
 </code></pre>
-
-<p>Download the two tiles (&ldquo;15&rdquo;, &ldquo;16&rdquo;). The default download path is the current working directory.</p>
-
-<pre><code>#Download tiles
-tiles &lt;- tile_get(tilenames, &quot;bio&quot;)
-</code></pre>
-
-<p>The downloaded tiles will look something like this if you plot them next to each other:
-<img src="/img/plotting.png" alt="Example image" />
-Merge the downloaded tiles layer by layer. The function produces a raster stack that contains the merged layers with the correct variable names.</p>
-
-<pre><code>merged &lt;- tile_merge(tiles)
-</code></pre>
-
-<p>Plotting the merged raster:
-<img src="/img/plotting2.png" alt="merged" /></p>
 
     </div>
 
@@ -541,6 +620,16 @@ Merge the downloaded tiles layer by layer. The function produces a raster stack 
 
 
       
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>Related</h3>
+        <ul>
+          
+          <li><a href="/post/worldclimtiles/">Downloading and merging WorldClim tiles</a></li>
+          
+        </ul>
+      </div>
       
     
 

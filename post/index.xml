@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Simon Kapitza</title>
-    <link>/post/</link>
+    <link>https://kapitzas.github.io/post/</link>
     <description>Recent content in Posts on Simon Kapitza</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy;2019</copyright>
     <lastBuildDate>Tue, 26 Mar 2019 00:00:00 +0100</lastBuildDate>
     
-	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://kapitzas.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Downloading and merging WorldClim tiles</title>
-      <link>/post/worldclimtiles/</link>
+      <link>https://kapitzas.github.io/post/worldclimtiles/</link>
       <pubDate>Tue, 26 Mar 2019 00:00:00 +0100</pubDate>
       
-      <guid>/post/worldclimtiles/</guid>
+      <guid>https://kapitzas.github.io/post/worldclimtiles/</guid>
       <description>A handy package to download and merge tiled WorldClim and SRTM data</description>
     </item>
     
     <item>
-      <title>Links to publication guidelines</title>
-      <link>/post/journals/</link>
+      <title>Links to author guidelines</title>
+      <link>https://kapitzas.github.io/post/journals/</link>
       <pubDate>Sat, 26 May 2018 00:00:00 +0200</pubDate>
       
-      <guid>/post/journals/</guid>
-      <description>A list of links to the publication guidelines of major ecology journals</description>
+      <guid>https://kapitzas.github.io/post/journals/</guid>
+      <description>A list of links to the author guidelines of major ecology journals</description>
     </item>
     
   </channel>
